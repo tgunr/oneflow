@@ -12,16 +12,13 @@ class GameScene: SKScene {
         // Get label node from scene and store it for use later
         label = childNode(withName: "//helloLabel") as? SKLabelNode
         label.alpha = 0.0
-        let moveNodeUp = SKAction.moveBy(x: 0.0,
-                                         y: 100.0,
-                                         duration: 1.0)
+        label.fontColor = SKColor.yellow
+
         let fadeInOut = SKAction.sequence([.fadeIn(withDuration: 2.0),
                                            .fadeOut(withDuration: 2.0)])
-//        label.run(moveNodeUp,
-//                       withKey: "ignition")
-        label.run(.repeatForever(moveNodeUp))
-//        label.run(.repeatForever(fadeInOut))
-        
+        label.run(.repeatForever(fadeInOut))
+        label.run(.repeatForever(.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
+
         // Create shape node to use during mouse interaction
         let w = (size.width + size.height) * 0.05
         
@@ -47,7 +44,7 @@ class GameScene: SKScene {
         guard let n = spinnyNode.copy() as? SKShapeNode else { return }
         
         n.position = pos
-        n.strokeColor = SKColor.green
+        n.strokeColor = SKColor.yellow
         addChild(n)
     }
     
